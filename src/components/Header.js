@@ -2,7 +2,7 @@
 const Header=()=>{
     return (
         <div>
-            <p>esto es la historia</p>
+            <p>esto es Header</p>
         </div>
     )
 }

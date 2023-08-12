@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import './components/Header'
-import './components/History'
-import './components/Game'
-import Header from './components/Header';
+import Header from'./components/Header.js'
+import History from'./components/History.js'
+import Game from './components/Game.js'
 
 function App() {
   return (
