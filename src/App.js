@@ -3,10 +3,15 @@ import './App.css';
 import './components/Header'
 import './components/History'
 import './components/Game'
+import Header from './components/Header';
 
 function App() {
   return (
-    <he
+  <div>
+    <Header />
+    <History />
+    <Game />
+  </div>
   );
 }
 
