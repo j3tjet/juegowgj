@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import fond from "../imagenes/pruebapng.png";
 import prueba from "../imagenes/link.jpg"
 
-const Game = () => {
+const MimiGame1 = () => {
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [personaje1, setPersonaje1] = useState(new Image());
+
     const handleKeyDown = (event) => {
         if (event.key === 'ArrowUp' && y>0) {
             setY(y - 10);
@@ -41,4 +42,4 @@ const Game = () => {
     );
 };
 
-export default Game;
+export default MiniGame1;
