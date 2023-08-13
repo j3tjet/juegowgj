@@ -20,7 +20,7 @@ const Game = () => {
     const [personaje1, setPersonaje1] = useState(new Image());
     const [sprites, setSprites] = useState([])
     const [npcs,setNpcs]=useState([{x:160,y:80,ruta:npc1},
-                                    {x:160,y:160,ruta:pintor}
+                                    {x:160,y:160,ruta:npc3}
                                      ])
     
 
