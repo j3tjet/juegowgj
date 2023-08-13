@@ -9,9 +9,7 @@ import Fondo from './components/Fondo.js'
 function App() {
   return (
   <div>
-    
-    <Game/>
-    <Fondo/>
+    <History/>
     
     
     

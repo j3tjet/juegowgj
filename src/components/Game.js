@@ -3,7 +3,14 @@ import fond from "../imagenes/pruebapng.png";
 import prueba from "../imagenes/link.jpg"
 import poke from "../imagenes/poke.png"
 import npc from "../imagenes/npc.jpeg"
-import brillo from "../imagenes/brillo.png"
+import casa from "../imagenes/magic_house/sprite_00.png"
+import arbol from "../imagenes/magic_house/sprite_01.png"
+import arbol2 from "../imagenes/magic_house/sprite_02.png"
+import arbol3 from "../imagenes/magic_house/sprite_03.png"
+import arbol4 from "../imagenes/magic_house/sprite_04.png"
+import montaña from "../imagenes/magic_house/sprite_05.png"
+import casa2 from "../imagenes/magic_house/sprite_06.png"
+import camino from "../imagenes/magic_house/sprite_08.png"
 import './Game.css'
 
 const Game = () => {
@@ -17,22 +24,27 @@ const Game = () => {
                                      ])
     
 
-    const mapa = [[true, false, true, true, true],
-    [true, false, true, false, true],
-    [true, false, true, false, true],
-    [true, true, true, false, true],
-    [true, false, false, false, true]]
+    const mapa = [[true,true,true,],
+                [true, false, true, false, true],
+                [true, false, true, false, true],
+                [true, true, true, false, true],
+                [true, false, false, false, true]]
 
-    const llenarimgs = (px, py) => {
+    const mapaAsets=[[0, 1, 0, 0, 0],
+    [0, 1, 0, 2, 0],
+    [0, 1, 0, 2, 0],
+    [0, 0, 0, 2, 0],
+    [0, 2, 2, 2, 0]]
+
+    const llenarimgs = (px, py,ruta) => {
         console.log("hola")
         const objSprite = {
-            ruta:{poke},
+            ruta:ruta,
             py: py,
             px: px,
 
         }
         setSprites(prevSprites => [...prevSprites, objSprite]);
-        //sprites.push( <image x={px} y={py} width="32" height="32" xlinkHref={objSprite.ruta}></image>)
         console.log(sprites)
     }
 
@@ -84,10 +96,16 @@ const Game = () => {
     useEffect(() => {
         let px=0
         let py=0
-        mapa.map((columna) => {
+        mapaAsets.map((columna) => {
             columna.map ((fila)=>{
-                if(!fila){
-                    llenarimgs(px,py)
+                if(fila==0){
+                    llenarimgs(px,py,camino)
+                }
+                if(fila==1){
+                    llenarimgs(px,py,casa)
+                }
+                if(fila==2){
+                    llenarimgs(px,py,arbol)
                 }
                 px=px+40
                 })
@@ -105,7 +123,7 @@ const Game = () => {
             <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"200"} height={"200"} xmlns="http://www.w3.org/2000/svg" >
                 
                 {sprites.map((imagen, index) => (
-                     <image key={index} x={imagen.px} y={imagen.py} width="32" height="32" xlinkHref={poke}></image>  
+                     <image key={index} x={imagen.px} y={imagen.py} width="32" height="32" xlinkHref={imagen.ruta}></image>  
                 ))}
                 {npcs.map((image,index)=>(
                     <image key={index} x={image.x} y={image.y} width="32" height="32" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image> 
