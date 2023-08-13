@@ -11,7 +11,10 @@ import npc3luz from "../imagenes/pintor/sprite_gabriel_el_pintor4.png"
 import arbol from "../imagenes/magic_house/sprite_01.png"
 import montaña from "../imagenes/magic_house/sprite_05.png"
 import casa from "../imagenes/magic_house/sprite_06.png"
-import camino from "../imagenes/magic_house/sprite_08.png"
+import casa2 from "../imagenes/magic_house/sprite_07.png"
+import agua from "../imagenes/magic_house/sprite_11.png"
+import camino from "../imagenes/magic_house/sprite_12.png"
+import camino2 from "../imagenes/magic_house/sprite_08.png"
 import './Game.css'
 import { Howl } from "howler";
 import sound from "../sound/nocturnal.mp3"
@@ -23,9 +26,9 @@ const Game = () => {
     const [y, setY] = useState(0);
     const [personaje1, setPersonaje1] = useState(new Image());
     const [sprites, setSprites] = useState([])
-    const [npcs, setNpcs] = useState([{ x: 240, y: 480, ruta: npc1 },
-    { x: 400, y: 40, ruta: npc3 },
-    { x: 80, y:560, ruta: npc2}
+    const [npcs, setNpcs] = useState([{ x: 760, y: 0, ruta: npc1 },
+    { x: 760, y: 400, ruta: npc3 },
+    { x: 40, y:560, ruta: npc2}
     ])
     const [enemigos,setEnemigos]=useState([
     { ruta: enemigo ,camino:[[80,240],[120,240],[160,240],[200,240],[240,240],[280,240],[320,240],[360,240],[400,240],[440,240],[480,240],[520,240],[560,240],[600,240],[640,240],[680,240],[720,240],[760,240]], indice:0},
@@ -50,6 +53,23 @@ const Game = () => {
     [true, true, true, false, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true],
     ]
 
+    const mapa2 = [[true, true, true, false, true, true, true, false, true, true, true, false, false, false, true, false, true, true, true, true],
+    [false, false, true, false, true, false, true, false, true, false, true, true, true, true, true, false, false, false, true, false],
+    [false, true, true, true, true, false, true, false, true, false, true, false, false, false, true, false, true, true, true, true],
+    [false, true, false, false, false, false, false, false, true, false, true, false, true, false, true, false, true, false, false, false],
+    [false, true, false, true, true, true, false, true, true, false, true, true, true, false, false, false, true, false, true, true],
+    [false, true, false, true, false, false, false, false, false, false, true, false, true, false, true, true, true, false, true, false],
+    [false, true, false, true, true, true, true, true, true, true, true, false, true, false, true, false, true, false, true, false],
+    [false, true, false, false, false, true, false, false, false, false, true, false, true, false, true, false, true, false, true, false],
+    [false, true, true, true, true, true, false, true, true, true, true, false, true, false, true, false, true, false, true, false],
+    [false, false, false, false, false, false, false, false, false, false, false, false, true, false, true, false, true, false, true, true],
+    [false, true, false, true, false, true, false, true, true, true, true, true, true, true, true, false, true, false, true, true],
+    [false, true, true, true, true, true, false, false, false, false, false, true, false, false, true, false, true, false, true, false],
+    [false, true, false, false, false, true, false, true, true, true, true, true, true, false, true, false, true, false, true, false],
+    [false, true, true, true, false, true, false, true, false, false, false, false, false, false, true, false, true, false, true, false],
+    [false, true, false, false, false, true, true, true, false, true, true, true, true, true, true, false, true, true, true, true],
+    ]
+
 
     const mapaAsets = [[0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
     [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
@@ -66,6 +86,23 @@ const Game = () => {
     [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+
+    const mapaAsets2 = [[0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 3, 3, 3, 0, 3, 0, 0, 0, 0],
+    [3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 0, 0, 0, 0, 3, 3, 3, 0, 3],
+    [3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 0, 3, 0, 0, 0, 0],
+    [3, 0, 3, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3],
+    [3, 0, 3, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 3, 3, 3, 0, 3, 0, 0],
+    [3, 0, 3, 0, 3, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 0, 0, 3, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 0, 2, 0, 2, 0, 2, 0, 0],
+    [2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0],
+    [2, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 0, 2, 0, 2],
+    [2, 0, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 3, 0, 3],
+    [3, 0, 0, 0, 3, 0, 3, 0, 5, 5, 5, 5, 5, 5, 0, 5, 0, 5, 0, 5],
+    [5, 0, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
     ]
 
     const llenarimgs = (px, py, ruta) => {
@@ -105,20 +142,20 @@ const Game = () => {
         let posx = x / tamaño;
         let posy = y / tamaño;
         if (event.key === 'ArrowUp' && y > 0) {
-            if (mapa[posy - 1][posx]) {
+            if (mapa2[posy - 1][posx]) {
                 setY(y - tamaño);
             }
 
         } else if (event.key === 'ArrowDown' && y < 560) { // cambiar por tamaño de personaje
-            if (mapa[posy + 1][posx]) {
+            if (mapa2[posy + 1][posx]) {
                 setY(y + tamaño);
             }
         } else if (event.key === 'ArrowLeft' && x > 0) {
-            if (mapa[posy][posx - 1]) {
+            if (mapa2[posy][posx - 1]) {
                 setX(x - tamaño);
             }
         } else if (event.key === 'ArrowRight' && x < 760) { // cambiar por tamaño de personaje
-            if (mapa[posy][posx + 1]) {
+            if (mapa2[posy][posx + 1]) {
                 setX(x + tamaño);
             }
         }
@@ -135,7 +172,7 @@ const Game = () => {
     useEffect(() => {
         let px = 0
         let py = 0
-        mapaAsets.map((columna) => {
+        mapaAsets2.map((columna) => {
             columna.map((fila) => {
                 if (fila == 0) {
                     llenarimgs(px, py, camino)
@@ -144,16 +181,16 @@ const Game = () => {
                     llenarimgs(px, py, casa)
                 }
                 if (fila == 2) {
-                    llenarimgs(px, py, arbol)
+                    llenarimgs(px, py, casa2)
                 }
                 if (fila == 3) {
                     llenarimgs(px, py, arbol)
                 }
                 if (fila == 4) {
-                    llenarimgs(px, py, arbol)
+                    llenarimgs(px, py, agua)
                 }
                 if (fila == 5) {
-                    llenarimgs(px, py, arbol)
+                    llenarimgs(px, py, camino2)
                 }
                 px = px + 40
             })
