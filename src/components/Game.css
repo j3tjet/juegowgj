@@ -1,5 +1,5 @@
 #game{
-    position: relative;
+    position: absolute;
     z-index: 2;
-
+    border: 3px solid white;
 }

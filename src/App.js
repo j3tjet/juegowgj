@@ -8,7 +8,7 @@ import Fondo from './components/Fondo.js'
 
 function App() {
   return (
-  <div>
+  <div className="container-app">
     
     <Game/>
     <Fondo/>
