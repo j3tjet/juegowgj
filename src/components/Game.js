@@ -6,6 +6,7 @@ import npc from "../imagenes/npc.jpeg"
 import brillo from "../imagenes/brillo.png"
 import './Game.css'
 import { Howl } from "howler";
+import sound from "../sound/nocturnal.mp3"
 
 const Game = () => {
     const tamaño = 40;
@@ -49,22 +50,7 @@ const Game = () => {
         console.log("Sprites actualizados:", sprites);
     }, [sprites]);
 
-    useEffect(() => {
-        const sound = new Howl({
-            src: ['./sound/nocturnal.mp3'],
-            loop: true,
-            volume: 0.5,
-          });
-      
-      
-          // Comienza a reproducir la música de fondo cuando el componente se monta
-          sound.play();
-      
-          // Detiene la música de fondo al desmontar el componente
-          const audio = new Audio('./sound/nocturnal.mp3');
-          audio.play();
     
-    },[])
     const handleKeyDown = (event) => {
         console.log(sprites)
         let posx = x / tamaño;
@@ -113,6 +99,14 @@ const Game = () => {
             py=py+40
         }
         )
+        const audio = new Howl({
+            src: [sound],
+            volume: 0.2,
+            html5: true,
+            autoplay: true
+        })
+
+        audio.play()
     },[])
 
 
