@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import fond from "../imagenes/pruebapng.png";
-import prueba from "../imagenes/link.jpg"
-import poke from "../imagenes/poke.png"
-import npc from "../imagenes/npc.jpeg"
+import mago from "../imagenes/mago/sprite_magician0.png"
+import npc from "../imagenes/2npc/sprite_00.png"
 import casa from "../imagenes/magic_house/sprite_00.png"
 import arbol from "../imagenes/magic_house/sprite_01.png"
-import arbol2 from "../imagenes/magic_house/sprite_02.png"
-import arbol3 from "../imagenes/magic_house/sprite_03.png"
-import arbol4 from "../imagenes/magic_house/sprite_04.png"
 import montaña from "../imagenes/magic_house/sprite_05.png"
 import casa2 from "../imagenes/magic_house/sprite_06.png"
 import camino from "../imagenes/magic_house/sprite_08.png"
@@ -107,6 +103,15 @@ const Game = () => {
                 if(fila==2){
                     llenarimgs(px,py,arbol)
                 }
+                if(fila==3){
+                    llenarimgs(px,py,arbol)
+                }
+                if(fila==4){
+                    llenarimgs(px,py,arbol)
+                }
+                if(fila==5){
+                    llenarimgs(px,py,arbol)
+                }
                 px=px+40
                 })
             px=0
@@ -128,7 +133,7 @@ const Game = () => {
                 {npcs.map((image,index)=>(
                     <image key={index} x={image.x} y={image.y} width="32" height="32" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image> 
                 ))}
-                <image id='personajeImg' x={x} y={y} width="32" height="32" xlinkHref={prueba}></image>
+                <image id='personajeImg' x={x} y={y} width="32" height="32" xlinkHref={mago}></image>
             </svg>
         </div>
     );
