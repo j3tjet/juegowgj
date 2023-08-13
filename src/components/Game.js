@@ -5,7 +5,7 @@ import npc1 from "../imagenes/2npc/sprite_00.png"
 import npc1luz from "../imagenes/2npc/sprite_04.png"
 
 import npc2 from "../imagenes/2npc/sprite_08.png"
-import npc3 from "../imagenes/pintor/sp"
+import npc3 from "../imagenes/pintor/sprite_gabriel_el_pintor0.png"
 import casa from "../imagenes/magic_house/sprite_00.png"
 import arbol from "../imagenes/magic_house/sprite_01.png"
 import montaña from "../imagenes/magic_house/sprite_05.png"
@@ -19,8 +19,8 @@ const Game = () => {
     const [y, setY] = useState(0);
     const [personaje1, setPersonaje1] = useState(new Image());
     const [sprites, setSprites] = useState([])
-    const [npcs,setNpcs]=useState([{x:160,y:80,ruta:npc},
-                                    {x:160,y:160,ruta:npc}
+    const [npcs,setNpcs]=useState([{x:160,y:80,ruta:npc1},
+                                    {x:160,y:160,ruta:pintor}
                                      ])
     
 
