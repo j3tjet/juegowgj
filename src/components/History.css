@@ -27,6 +27,8 @@
   }
   
   .page {
+    display: flex;
+    flex-direction: column;
     width: 49%;
     height: 98%;
     padding: 20px;
@@ -268,4 +270,63 @@ header a, a:visited {
     align-items: center;
 }
 
+.mundoOscuro{
+  width: 100%;
+  height: 70%;
+}
+.nacimiento{
+  width: 100%;
+  height: 70%;
+}
+
+.ventana{
+  width: 100%;
+  height: 70%;
+}
+
+.abuela{
+  width: 100%;
+  height: 70%;
+}
+
+.viaje{
+  width: 100%;
+  height: 70%;
+}
+#jugar{
+  background-color: #e0560b;
+  width: 300px;
+  height: 70px;
+  border-radius: 20px;
+  border: white;
+  border-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 100px;
+  font-size: 50px; 
+  font-weight: bolder;
+}
+
+#jugar:hover{
+    background-color: #f98a1b;
+    width: 300px;
+    height: 70px;
+    border-radius: 20px;
+    border: white;
+    border-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 50px;  
+    font-weight: bolder;
+  }
+
+.cover1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   

@@ -1,3 +1,6 @@
+#fondo{
+  display: none;
+}
 .stars, .twinkling, .clouds {
     position:absolute;
     top:0;

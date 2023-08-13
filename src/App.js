@@ -11,7 +11,9 @@ function App() {
   return (
   <div className="container-app">
     
+    <History/>
     <Game/>
+    <Fondo/>
     
     
     
