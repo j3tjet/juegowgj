@@ -28,8 +28,10 @@ const Game = () => {
     { x: 80, y:560, ruta: npc2}
     ])
     const [enemigos,setEnemigos]=useState([
-    { ruta: enemigo ,camino:[[80,240],[120,240],[160,240],[200,240],[240,240],[280,240],[320,240],[360,240],[400,240],[440,240],[480,240],[520,240],[560,240],[600,240],[640,240],[680,240],[720,240],[760,240]], indice:0}
-    ])
+    { ruta: enemigo ,camino:[[80,240],[120,240],[160,240],[200,240],[240,240],[280,240],[320,240],[360,240],[400,240],[440,240],[480,240],[520,240],[560,240],[600,240],[640,240],[680,240],[720,240],[760,240]], indice:0},
+    { ruta: enemigo ,camino:[[0,320],[40,320],[80,320],[80,360],[80,400],[40,400],[0,400],[0,360]], indice:0},
+    { ruta: enemigo ,camino:[[520,0],[520,40],[520,80],[520,120],[520,160],[520,200],[520,160],[520,120],[520,80],[520,40]], indice:0}
+])
 
     const mapa = [[true, true, true, false, false, false, false, false, false, true, true, true, true, true, true, false, false, false, false, false],
     [false, false, true, false, false, false, false, false, false, true, true, true, true, true, true, false, false, false, false, false],
@@ -161,12 +163,14 @@ const Game = () => {
         )
         const audio = new Howl({
             src: [sound],
-            volume: 0.2,
+            volume: 1,
             html5: true,
             autoplay: true
         })
 
         audio.play()
+
+        
     },[])
 
 
@@ -182,17 +186,16 @@ const Game = () => {
         if(x==enemigo.camino[enemigo.indice][0]-40 && y==enemigo.camino[enemigo.indice][1] ){
             setvida(vida-1)
         }
-        
-          
+                  
         })
         
         console.log(enemigos[0])
         
-    },)
+    })
 
     return (
         <div id='game'>
-            <p>{vida}</p>
+            <p id="vidas">vidas+{vida}</p>
 
             <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"800"} height={"600"} xmlns="http://www.w3.org/2000/svg" >
 
