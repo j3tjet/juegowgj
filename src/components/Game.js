@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import fond from "../imagenes/pruebapng.png";
 import mago from "../imagenes/mago/sprite_magician0.png"
-import npc from "../imagenes/2npc/sprite_00.png"
+import npc1 from "../imagenes/2npc/sprite_00.png"
+import npc1luz from "../imagenes/2npc/sprite_04.png"
+
+import npc2 from "../imagenes/2npc/sprite_08.png"
+import npc3 from "../imagenes/pintor/sp"
 import casa from "../imagenes/magic_house/sprite_00.png"
 import arbol from "../imagenes/magic_house/sprite_01.png"
 import montaña from "../imagenes/magic_house/sprite_05.png"
@@ -47,7 +51,7 @@ const Game = () => {
     const interaccion=()=>{
         npcs.map((npc)=>{
             if(npc.x==x && npc.y==y){
-                npc.ruta=brillo
+                npc.ruta=npc1luz
             }
         })
     }
