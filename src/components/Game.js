@@ -13,6 +13,8 @@ import montaña from "../imagenes/magic_house/sprite_05.png"
 import casa from "../imagenes/magic_house/sprite_06.png"
 import camino from "../imagenes/magic_house/sprite_08.png"
 import './Game.css'
+import { Howl } from "howler";
+import sound from "../sound/nocturnal.mp3"
 
 const Game = () => {
     const [vida,setvida]=useState(3)
@@ -95,6 +97,7 @@ const Game = () => {
         console.log("Sprites actualizados:", sprites);
     }, [sprites]);
 
+    
     const handleKeyDown = (event) => {
         console.log(sprites)
         let posx = x / tamaño;
@@ -156,7 +159,16 @@ const Game = () => {
             py = py + 40
         }
         )
-    }, [])
+        const audio = new Howl({
+            src: [sound],
+            volume: 0.2,
+            html5: true,
+            autoplay: true
+        })
+
+        audio.play()
+    },[])
+
 
     useEffect(()=>{
         enemigos.map((enemigo)=>{

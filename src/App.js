@@ -4,11 +4,13 @@ import Header from'./components/Header.js'
 import History from'./components/History.js'
 import Game from './components/Game.js'
 import Fondo from './components/Fondo.js'
+import music from './sound/nocturnal.mp3'
 
 
 function App() {
   return (
-  <div>
+  <div className="container-app">
+    
     <Game/>
     
     
