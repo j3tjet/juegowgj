@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import fond from "../imagenes/pruebapng.png";
 import prueba from "../imagenes/link.jpg"
 import poke from "../imagenes/poke.png"
+import npc from "../imagenes/npc.jpeg"
+import brillo from "../imagenes/brillo.png"
 
 const Game = () => {
     const tamaño = 40;
@@ -9,7 +11,9 @@ const Game = () => {
     const [y, setY] = useState(0);
     const [personaje1, setPersonaje1] = useState(new Image());
     const [sprites, setSprites] = useState([])
-
+    const [npcs,setNpcs]=useState([{x:160,y:80,ruta:npc},
+                                    {x:160,y:160,ruta:npc}
+                                     ])
     
 
     const mapa = [[true, false, true, true, true],
@@ -17,7 +21,6 @@ const Game = () => {
     [true, false, true, false, true],
     [true, true, true, false, true],
     [true, false, false, false, true]]
-
 
     const llenarimgs = (px, py) => {
         console.log("hola")
@@ -30,6 +33,14 @@ const Game = () => {
         setSprites(prevSprites => [...prevSprites, objSprite]);
         //sprites.push( <image x={px} y={py} width="32" height="32" xlinkHref={objSprite.ruta}></image>)
         console.log(sprites)
+    }
+
+    const interaccion=()=>{
+        npcs.map((npc)=>{
+            if(npc.x==x && npc.y==y){
+                npc.ruta=brillo
+            }
+        })
     }
     useEffect(() => {
         console.log("Sprites actualizados:", sprites);
@@ -63,10 +74,12 @@ const Game = () => {
         const personaje = document.getElementById("personajeImg");
         personaje.setAttribute("x", x);
         personaje.setAttribute("y", y);
+        interaccion();
         console.log("x " + x + "y " + y)
+        console.log(npcs)
 
     }, [x, y]);
-    let eti
+
     useEffect(() => {
         let px=0
         let py=0
@@ -89,10 +102,14 @@ const Game = () => {
             <p>Esto es el juego</p>
             <img src={fond} alt="Fondo" />
             <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"200"} height={"200"} xmlns="http://www.w3.org/2000/svg" >
-                <image id="personajeImg" x={x} y={y} width="32" height="32" xlinkHref={prueba}></image>
+                
                 {sprites.map((imagen, index) => (
-        <image key={index} x={imagen.px} y={imagen.py} width="32" height="32" xlinkHref={poke}></image>
-    ))}
+                     <image key={index} x={imagen.px} y={imagen.py} width="32" height="32" xlinkHref={poke}></image>  
+                ))}
+                {npcs.map((image,index)=>(
+                    <image key={index} x={image.x} y={image.y} width="32" height="32" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image> 
+                ))}
+                <image id="personajeImg" x={x} y={y} width="32" height="32" xlinkHref={prueba}></image>
             </svg>
             
         </div>
