@@ -5,11 +5,12 @@ import npc1 from "../imagenes/2npc/sprite_00.png"
 import npc1luz from "../imagenes/2npc/sprite_04.png"
 
 import npc2 from "../imagenes/2npc/sprite_08.png"
+import npc2luz from "../imagenes/2npc/sprite_12.png"
 import npc3 from "../imagenes/pintor/sprite_gabriel_el_pintor0.png"
-import casa from "../imagenes/magic_house/sprite_00.png"
+import npc3luz from "../imagenes/pintor/sprite_gabriel_el_pintor4.png"
 import arbol from "../imagenes/magic_house/sprite_01.png"
 import montaña from "../imagenes/magic_house/sprite_05.png"
-import casa2 from "../imagenes/magic_house/sprite_06.png"
+import casa from "../imagenes/magic_house/sprite_06.png"
 import camino from "../imagenes/magic_house/sprite_08.png"
 import './Game.css'
 
@@ -19,27 +20,51 @@ const Game = () => {
     const [y, setY] = useState(0);
     const [personaje1, setPersonaje1] = useState(new Image());
     const [sprites, setSprites] = useState([])
-    const [npcs,setNpcs]=useState([{x:160,y:80,ruta:npc1},
-                                    {x:160,y:160,ruta:npc3}
-                                     ])
-    
+    const [npcs, setNpcs] = useState([{ x: 240, y: 480, ruta: npc1 },
+    { x: 400, y: 40, ruta: npc3 },
+    { x: 80, y:560, ruta: npc2}
+    ])
 
-    const mapa = [[true,true,true,],
-                [true, false, true, false, true],
-                [true, false, true, false, true],
-                [true, true, true, false, true],
-                [true, false, false, false, true]]
 
-    const mapaAsets=[[0, 1, 0, 0, 0],
-    [0, 1, 0, 2, 0],
-    [0, 1, 0, 2, 0],
-    [0, 0, 0, 2, 0],
-    [0, 2, 2, 2, 0]]
+    const mapa = [[true, true, true, false, false, false, false, false, false, true, true, true, true, true, true, false, false, false, false, false],
+    [false, false, true, false, false, false, false, false, false, true, true, true, true, true, true, false, false, false, false, false],
+    [false, false, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true, true, true, true],
+    [false, false, false, false, false, true, true, false, false, false, false, false, false, true, true, true, true, true, true, true],
+    [false, false, false, false, false, true, true, false, false, false, false, false, false, true, true, false, false, false, false, false],
+    [false, false, false, false, false, true, true, false, false, false, false, false, false, true, true, false, false, false, false, false],
+    [false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
+    [false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],
+    [true, true, true, false, false, false, false, true, true, false, false, false, true, true, true, false, false, false, false, false],
+    [true, false, true, false, false, false, false, true, true, false, false, false, true, true, true, false, false, false, false, false],
+    [true, true, true, false, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true],
+    [false, false, true, false, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true],
+    [true, true, true, false, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true],
+    [true, true, true, false, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true],
+    [true, true, true, false, true, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true],
+    ]
 
-    const llenarimgs = (px, py,ruta) => {
+
+    const mapaAsets = [[0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+    [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2],
+    [0, 2, 0, 2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2],
+    [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+
+    const llenarimgs = (px, py, ruta) => {
         console.log("hola")
         const objSprite = {
-            ruta:ruta,
+            ruta: ruta,
             py: py,
             px: px,
 
@@ -48,10 +73,18 @@ const Game = () => {
         console.log(sprites)
     }
 
-    const interaccion=()=>{
-        npcs.map((npc)=>{
-            if(npc.x==x && npc.y==y){
-                npc.ruta=npc1luz
+    const interaccion = () => {
+        npcs.map((npc) => {
+            if (npc.x == x && npc.y == y) {
+                if(npc.ruta==npc1){
+                npc.ruta = npc1luz
+                }
+                if(npc.ruta==npc2){
+                    npc.ruta = npc2luz
+                    }
+                    if(npc.ruta==npc3){
+                        npc.ruta = npc3luz
+                        }
             }
         })
     }
@@ -68,7 +101,7 @@ const Game = () => {
                 setY(y - tamaño);
             }
 
-        } else if (event.key === 'ArrowDown' && y < 160) { // cambiar por tamaño de personaje
+        } else if (event.key === 'ArrowDown' && y < 560) { // cambiar por tamaño de personaje
             if (mapa[posy + 1][posx]) {
                 setY(y + tamaño);
             }
@@ -76,7 +109,7 @@ const Game = () => {
             if (mapa[posy][posx - 1]) {
                 setX(x - tamaño);
             }
-        } else if (event.key === 'ArrowRight' && x < 160) { // cambiar por tamaño de personaje
+        } else if (event.key === 'ArrowRight' && x < 760) { // cambiar por tamaño de personaje
             if (mapa[posy][posx + 1]) {
                 setX(x + tamaño);
             }
@@ -94,50 +127,50 @@ const Game = () => {
     }, [x, y]);
 
     useEffect(() => {
-        let px=0
-        let py=0
+        let px = 0
+        let py = 0
         mapaAsets.map((columna) => {
-            columna.map ((fila)=>{
-                if(fila==0){
-                    llenarimgs(px,py,camino)
+            columna.map((fila) => {
+                if (fila == 0) {
+                    llenarimgs(px, py, camino)
                 }
-                if(fila==1){
-                    llenarimgs(px,py,casa)
+                if (fila == 1) {
+                    llenarimgs(px, py, casa)
                 }
-                if(fila==2){
-                    llenarimgs(px,py,arbol)
+                if (fila == 2) {
+                    llenarimgs(px, py, arbol)
                 }
-                if(fila==3){
-                    llenarimgs(px,py,arbol)
+                if (fila == 3) {
+                    llenarimgs(px, py, arbol)
                 }
-                if(fila==4){
-                    llenarimgs(px,py,arbol)
+                if (fila == 4) {
+                    llenarimgs(px, py, arbol)
                 }
-                if(fila==5){
-                    llenarimgs(px,py,arbol)
+                if (fila == 5) {
+                    llenarimgs(px, py, arbol)
                 }
-                px=px+40
-                })
-            px=0
-            py=py+40
+                px = px + 40
+            })
+            px = 0
+            py = py + 40
         }
         )
-    },[])
+    }, [])
 
 
 
     return (
         <div id='game'>
-           
-            <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"200"} height={"200"} xmlns="http://www.w3.org/2000/svg" >
-                
+
+            <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"800"} height={"600"} xmlns="http://www.w3.org/2000/svg" >
+
                 {sprites.map((imagen, index) => (
-                     <image key={index} x={imagen.px} y={imagen.py} width="32" height="32" xlinkHref={imagen.ruta}></image>  
+                    <image key={index} x={imagen.px} y={imagen.py} width="40" height="40" xlinkHref={imagen.ruta}></image>
                 ))}
-                {npcs.map((image,index)=>(
-                    <image key={index} x={image.x} y={image.y} width="32" height="32" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image> 
+                {npcs.map((image, index) => (
+                    <image key={index} x={image.x} y={image.y} width="40" height="40" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image>
                 ))}
-                <image id='personajeImg' x={x} y={y} width="32" height="32" xlinkHref={mago}></image>
+                <image id='personajeImg' x={x} y={y} width="40" height="40" xlinkHref={mago}></image>
             </svg>
         </div>
     );
