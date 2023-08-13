@@ -4,6 +4,7 @@ import prueba from "../imagenes/link.jpg"
 import poke from "../imagenes/poke.png"
 import npc from "../imagenes/npc.jpeg"
 import brillo from "../imagenes/brillo.png"
+import './Game.css'
 
 const Game = () => {
     const tamaño = 40;
@@ -97,10 +98,10 @@ const Game = () => {
     },[])
 
 
+
     return (
-        <div >
-            <p>Esto es el juego</p>
-            <img src={fond} alt="Fondo" />
+        <div id='game'>
+           
             <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"200"} height={"200"} xmlns="http://www.w3.org/2000/svg" >
                 
                 {sprites.map((imagen, index) => (
@@ -109,9 +110,8 @@ const Game = () => {
                 {npcs.map((image,index)=>(
                     <image key={index} x={image.x} y={image.y} width="32" height="32" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image> 
                 ))}
-                <image id="personajeImg" x={x} y={y} width="32" height="32" xlinkHref={prueba}></image>
+                <image id='personajeImg' x={x} y={y} width="32" height="32" xlinkHref={prueba}></image>
             </svg>
-            
         </div>
     );
 };
