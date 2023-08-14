@@ -6,6 +6,7 @@ import mundoOscuro from '../imagenes/fotosLibro/mundo.oscuro.png'
 import nacimiento from '../imagenes/fotosLibro/nacimiento.png'
 import ventana from '../imagenes/fotosLibro/ventana.png'
 import viaje from '../imagenes/fotosLibro/viaje.png'
+import mago from '../imagenes/mago/sprite_magician0.png'
 import { useState } from 'react'
 
 const History = () => {
@@ -49,7 +50,8 @@ const History = () => {
                         <img className="viaje" src={viaje} alt="icono del proyecto" />
                     </label>
                     <label className="page" htmlFor="page-7">
-                        <p>Con las ensenanzas de la abuela ayuda a Lucian a que pueda revelar la belleza oculta de cada persona</p>
+                        <p>Con las ensenanzas de la abuela ayuda a Lucian a que pueda revelar la belleza oculta de cada persona</p><br/><br/>
+                        <img className="mago/libro" src={mago}  height={200} width={200} alt="icono del proyecto" />
                         <p></p>
                     </label>
                     <input type="radio" name="page" id="page-9" />

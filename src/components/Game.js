@@ -13,8 +13,8 @@ import montaña from "../imagenes/magic_house/sprite_05.png"
 import casa from "../imagenes/magic_house/sprite_06.png"
 import casa2 from "../imagenes/magic_house/sprite_07.png"
 import agua from "../imagenes/magic_house/sprite_11.png"
-import camino from "../imagenes/magic_house/sprite_12.png"
-import camino2 from "../imagenes/magic_house/sprite_08.png"
+import muro from "../imagenes/magic_house/sprite_12.png"
+import camino from "../imagenes/magic_house/sprite_08.png"
 import './Game.css'
 import { Howl } from "howler";
 import sound from "../sound/nocturnal.mp3"
@@ -90,19 +90,19 @@ const Game = () => {
 
     const mapaAsets2 = [[0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 3, 3, 3, 0, 3, 0, 0, 0, 0],
     [3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 0, 0, 0, 0, 3, 3, 3, 0, 3],
-    [3, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3, 0, 3, 0, 0, 0, 0],
-    [3, 0, 3, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3],
-    [3, 0, 3, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 3, 3, 3, 0, 3, 0, 0],
-    [3, 0, 3, 0, 3, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 0, 0, 3, 0, 1],
-    [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 0, 2, 0, 2, 0, 2, 0, 0],
-    [2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0],
-    [2, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 0, 2, 0, 2],
-    [2, 0, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 3, 0, 3],
-    [3, 0, 0, 0, 3, 0, 3, 0, 5, 5, 5, 5, 5, 5, 0, 5, 0, 5, 0, 5],
-    [5, 0, 5, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 3, 0, 2, 0, 1, 0, 3, 3, 2, 0, 3, 0, 0, 0, 0],
+    [1, 0, 3, 3, 3, 3, 2, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 3, 3],
+    [2, 0, 3, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 3, 1, 3, 0, 3, 0, 0],
+    [2, 0, 3, 0, 3, 3, 3, 2, 3, 3, 0, 3, 0, 1, 0, 0, 0, 1, 0, 1],
+    [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 3, 0, 3, 0, 3],
+    [3, 0, 3, 3, 3, 0, 3, 1, 3, 2, 0, 3, 0, 3, 0, 3, 0, 2, 0, 3],
+    [1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 3, 0, 2, 0, 3, 0, 3],
+    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 2, 0, 2, 0, 2, 0, 0],
+    [2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0],
+    [3, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 0, 3, 3, 0, 3, 0, 3, 0, 3],
+    [2, 0, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 3, 0, 3],
+    [3, 0, 0, 0, 3, 0, 3, 0, 3, 3, 3, 3, 3, 3, 0, 3, 0, 3, 0, 3],
+    [3, 0, 4, 4, 4, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
     ]
 
     const llenarimgs = (px, py, ruta) => {
@@ -190,7 +190,7 @@ const Game = () => {
                     llenarimgs(px, py, agua)
                 }
                 if (fila == 5) {
-                    llenarimgs(px, py, camino2)
+                    llenarimgs(px, py, muro)
                 }
                 px = px + 40
             })
@@ -232,7 +232,7 @@ const Game = () => {
 
     return (
         <div id='game'>
-            <p id="vidas">vidas+{vida}</p>
+            <p id="vidas">Vidas: {vida}</p>
 
             <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"800"} height={"600"} xmlns="http://www.w3.org/2000/svg" >
 
