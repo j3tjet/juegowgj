@@ -15,12 +15,61 @@ import camino from "../imagenes/magic_house/sprite_08.png"
 import './Game.css'
 import { Howl } from "howler";
 import sound from "../sound/nocturnal.mp3"
+import black from "../imagenes/10.png"
 
 const Game = () => {
     const [vida,setvida]=useState(3)
     const tamaño = 40;
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
+    const [mapDark, setMapDark] = useState([[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+        ]
+    )
+
+    const light = () => {
+        const iluminarX=x/40
+        const iluminarY=y/40
+        if((iluminarX-1)>0&&(iluminarY-1)>0){
+            mapDark[iluminarX-1][iluminarY-1]=true
+        }
+        if((iluminarX-1)>0){
+            mapDark[iluminarX-1][iluminarY]=true
+        }
+        if((iluminarX-1)>0&&(iluminarY+1)<15){
+            mapDark[iluminarX-1][iluminarY+1]=true
+        }
+        if((iluminarY-1)>0){
+            mapDark[iluminarX][iluminarY-1]=true
+        }
+        if((iluminarY+1)<20){
+            mapDark[iluminarX][iluminarY+1]=true
+        }
+        if((iluminarX+1)>0&&(iluminarY-1)>0){
+            mapDark[iluminarX+1][iluminarY-1]=true
+        }
+        if((iluminarX+1)){
+            mapDark[iluminarX+1][iluminarY]=true
+        }
+        if((iluminarX+1)>0&&(iluminarY+1)>0){
+            mapDark[iluminarX+1][iluminarY+1]=true
+        }
+        
+        
+    }
     const [personaje1, setPersonaje1] = useState(new Image());
     const [sprites, setSprites] = useState([])
     const [npcs, setNpcs] = useState([{ x: 240, y: 480, ruta: npc1 },
@@ -129,7 +178,7 @@ const Game = () => {
         personaje.setAttribute("x", x);
         personaje.setAttribute("y", y);
         interaccion();
-
+        light()
     }, [x, y]);
 
     useEffect(() => {
@@ -199,8 +248,9 @@ const Game = () => {
 
             <svg id='tablero' tabIndex={0} onKeyDown={handleKeyDown} width={"800"} height={"600"} xmlns="http://www.w3.org/2000/svg" >
 
-                {sprites.map((imagen, index) => (
-                    <image key={index} x={imagen.px} y={imagen.py} width="40" height="40" xlinkHref={imagen.ruta}></image>
+                {
+                sprites.map((imagen, index) => (
+                    <image key={index} x={imagen.px} y={imagen.py} width="40" height="40" xlinkHref={mapDark[imagen.px/40][imagen.py/40] ? imagen.ruta:black}></image>
                 ))}
                 {npcs.map((image, index) => (
                     <image key={index} x={image.x} y={image.y} width="40" height="40" xlinkHref={image.ruta} Style={"filter: invert(100%);"}></image>
